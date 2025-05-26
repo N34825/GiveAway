@@ -896,6 +896,7 @@ button {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+  height: fit-content;
 }
 
 button:hover {
@@ -921,6 +922,9 @@ button:hover {
 .facebook {
   background-color: #3b5998;
 }
+.gmail {
+  background-color: cyan;
+}
 
 .google {
   background-color: #db4437;
@@ -940,3 +944,20 @@ button:hover {
   color: #667eea;
   text-decoration: none;
 }
+
+.btn-success {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+}
+
+/* Terms of Service */
+.agree-container {
+  display: inline-flex;
+}
+.form-check-label {
+  margin-left: 10px;
+}
+
+

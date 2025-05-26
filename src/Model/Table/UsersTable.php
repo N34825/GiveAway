@@ -56,15 +56,61 @@ class UsersTable extends Table
     {
         $validator
             ->scalar('username')
-            ->maxLength('username', 50)
+            ->maxLength('username', 60)
             ->requirePresence('username', 'create')
             ->notEmptyString('username');
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 255)
+            ->maxLength('password', 20)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
+        
+        $validator
+            ->scalar('firstname')
+            ->maxLength('firstname', 60)
+            ->requirePresence('firstname', 'create')
+            ->notEmptyString('firstname');
+
+        
+        $validator
+            ->scalar('lastname')
+            ->maxLength('lastname', 60)
+            ->requirePresence('lastname', 'create')
+            ->notEmptyString('lastnmae');
+        
+        $validator
+            ->scalar('emailaddress')
+            ->maxLength('emailaddress', 60)
+            ->requirePresence('emailaddress', 'create')
+            ->notEmptyString('emailaddress');
+
+            
+        $validator
+            ->scalar('gender')
+            ->maxLength('gender', 20)
+            ->requirePresence('gender', 'create')
+            ->notEmptyString('gender');
+        
+        $validator
+            ->scalar('birthday')
+            ->maxLength('birthday', 20)
+            ->requirePresence('birthday', 'create')
+            ->notEmptyString('birthday');
+
+
+
+        
+        $validator->boolean('confirm')
+            ->requirePresence('confirm', 'create')
+            ->notEmptyString('confirm', 'You must confirm the information.')
+            ->add('confirm', 'checked', [
+                'rule' => function ($value) {
+                    return (bool)$value;
+                },
+        'message' => 'You must confirm the information.',
+    ]);
+
 
         return $validator;
     }

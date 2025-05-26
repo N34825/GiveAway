@@ -41,7 +41,8 @@
             'class' => 'input-group'
         ]) ?>
         <?= $this->Form->button('Login', [
-            'type' => 'submit'
+            'type' => 'submit',
+            'class' => 'btn btn-success'
         ]) ?>
 
         <div class="social-login">
@@ -61,7 +62,7 @@
         </div>
 
         <p class="signup">Don't have an account?
-            <?= $this->Html->link('SIGN UP', [
+            <?= $this->Html->link('SIGNUP', [
                 'controller' => 'Users',
                 'action' => 'signup'
                 ], 

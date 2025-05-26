@@ -19,7 +19,15 @@ class UsersController extends AppController
 
 
         // Allow unauthenticated access to login
-        $this->Authentication->addUnauthenticatedActions(['login', 'signup']);
+        $this->Authentication->addUnauthenticatedActions([
+            'login', 
+            'signup', 
+            'confirm',
+            'register',
+            'add',
+            'view',
+            'edit'
+        ]);
     }
     /**
      * Index method
@@ -57,6 +65,15 @@ class UsersController extends AppController
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            // Check if the confirmation checkbox is ticked
+            if (empty($user['confirm'])) 
+            {
+                $this->Flash->error('You must confirm the infromation.');
+                return;
+            } else {
+                $this->request->getSession()->write('FromData.User', $user);
+                return $this->redirect(['action' => 'confirm']);
+            }
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -158,5 +175,49 @@ class UsersController extends AppController
             $this->Authentication->logout();
             return $this->redirect(['controller' => 'Users', 'action' => 'login']);
         }
+    }
+    public function confirm()
+    {
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            // debug($data); exit;
+
+            // Validate before confirm
+            $user = $this->Users->newEntity($data);
+            debug($user);exit;
+
+
+            if ($user->getErrors()) {
+                $this->Flash->error('Please correct the errors.');
+                return $this->redirect(['action' => 'signup']);
+            }
+
+            // Store data in session for submit
+            $this->request->getSession()->write('FormData.User', $data);
+            $this->set(compact('user'));
+        } else {
+            return $this->redirect(['action' => 'signup']);
+        }
+    }
+    public function Register()
+    {
+        $session = $this->request->getSession();
+        $data = $session->read('FormData.User');
+
+        if (empty($data)) {
+            $this->Flash->error('No data to submit.');
+            return $this->redirect(['action' => 'add']);
+        }
+
+        $user = $this->Users->newEntity($data);
+
+        if ($this->Users->save($user)) {
+            $session->delete('FormData.User');
+            $this->Flash->success('User saved successfully!');
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $this->Flash->error('Could not save user.');
+        return $this->redirect(['action' => 'add']);
     }
 }
