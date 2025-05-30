@@ -56,7 +56,6 @@ return function (RouteBuilder $routes): void {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-        
         $builder->connect('/users/login', ['controller' => 'Users', 'action' => 'login']);
 
         /*
@@ -79,6 +78,17 @@ return function (RouteBuilder $routes): void {
          */
         $builder->fallbacks();
     });
+    // Admin prefix
+    $routes->prefix('Admin', function (RouteBuilder $routes) {
+        // All routes here will be prefixed with `/admin`, and
+        // have the `'prefix' => 'Admin'` route element added that
+        // will be required when generating URLs for these routes
+        $routes->fallbacks(DashedRoute::class);
+        // You can define specific admin routes here, e.g.:
+        $routes->connect('/users', ['controller' => 'Users', 'action' => 'index']);
+        $routes->connect('/dashboard', ['controller' => 'Pages', 'action' => 'dashboard']);
+    });
+
 
     /*
      * If you need a different set of middleware or none at all,

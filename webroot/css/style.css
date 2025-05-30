@@ -960,4 +960,17 @@ button:hover {
   margin-left: 10px;
 }
 
+.user-register {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+}
+.user-margin {
+  margin-right: 10px;
+}
 
+/* footer section */
+.main-section-footer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #555;
+}

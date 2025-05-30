@@ -43,6 +43,13 @@ class PagesController extends AppController
      *   be found and not in debug mode.
      * @throws \Cake\View\Exception\MissingTemplateException In debug mode.
      */
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        // Load models, components, or helpers here if needed
+        $this->getTableLocator()->get('Categories');
+    }
     public function display(string ...$path): ?Response
     {
         if (!$path) {
@@ -70,4 +77,14 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
+    public function home() // or whatever your homepage action is
+    {
+        $this->getTableLocator()->get('Categories'); // load model manually
+        $categories = $this->Categories->find('all')->toArray();
+        debug($categories);exit;
+
+        $this->set(compact('categories'));
+    }
+    
 }

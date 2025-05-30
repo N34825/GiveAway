@@ -1,0 +1,6 @@
+<!-- 2025/05/30 -->
+ALTER TABLE users
+CHANGE COLUMN user_id user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
+
+
+

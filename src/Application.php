@@ -159,7 +159,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $service->loadAuthenticator('Authentication.Session');
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => '/users/login',
+            'loginUrl' => '/admin/users/login',
         ]);
 
         return $service;

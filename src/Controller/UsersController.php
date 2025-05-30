@@ -184,7 +184,7 @@ class UsersController extends AppController
 
             // Validate before confirm
             $user = $this->Users->newEntity($data);
-            debug($user);exit;
+            // debug($user);exit;
 
 
             if ($user->getErrors()) {

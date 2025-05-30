@@ -44,8 +44,8 @@ body {
 }
 
 .layout_padding {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .layout_padding2 {
@@ -91,7 +91,7 @@ body {
 
 /*header section*/
 .hero_area {
-  padding: 0 45px;
+  padding: 0 0px;
 }
 
 
@@ -100,10 +100,9 @@ body {
 }
 
 
-
 #navbarSupportedContent {
   width: 100%;
-  background-color: #f9ece6;
+  // background-color: #f9ece6;
   justify-content: center;
   padding: 10px 0;
   border-radius: 15px 15px 0 0;
@@ -269,7 +268,7 @@ a:focus {
     color: #fefefe;
     background-color: $black;
     background-color: #f89cab;
-    padding: 25px;
+    // padding: 10px;
     border-radius: 0 0 15px 15px;
   }
 
@@ -339,7 +338,7 @@ a:focus {
 // shop section
 .shop_section {
   .heading_container {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .box {
