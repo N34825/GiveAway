@@ -5,6 +5,9 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
+// use Cake\Controller\Component\PaginatorComponent;
+use Cake\ORM\Locator\LocatorAwareTrait; 
+
 /**
  * Users Controller
  *
@@ -12,6 +15,13 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    use LocatorAwareTrait;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        // $this->loadComponent('Paginator'); // load Paginator for easy pagination
+    }
     /**
      * Index method
      *
@@ -19,13 +29,15 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->Authorization->authorize($this->request->getAttribute('identity'), 'accessAdmin', 'User');
+        // Get the Users table instance
+        $usersTable = $this->fetchTable('Users');
+        debug($usersTable);exit;
 
-        // die('here');exit;
-        $query = $this->Users->find();
-        // debug($query);exit;
-        $users = $this->paginate($query);
+        // Build a query
+        $users = $usersTable->find()->toArray();
+        debug($users);exit;
 
+        // Pass the data to the view
         $this->set(compact('users'));
     }
 
@@ -56,7 +68,7 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             // debug($user);exit;
             $data = $this->Users->save($user);
-            debug($data);exit;
+            // debug($data);exit;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 

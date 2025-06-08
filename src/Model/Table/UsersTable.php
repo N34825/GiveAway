@@ -55,6 +55,12 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
+            ->scalar('user_id')
+            ->maxLength('user_id', 50)
+            ->requirePresence('user_id', 'create')
+            ->notEmptyString('user_id');
+
+        $validator
             ->scalar('username')
             ->maxLength('username', 50)
             ->requirePresence('username', 'create')
@@ -65,6 +71,11 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
+        
+        $validator
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email', 'An email is required');
 
         return $validator;
     }
@@ -78,8 +89,13 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
+        $rules->add($rules->isUnique(['username']), ['errorField' => 'username', 'message' => 'This username is already taken.']);
+        $rules->add($rules->isUnique(['email']), ['errorField' => 'email', 'message' => 'This email is already registered.']);
 
         return $rules;
+    }
+    public function findAdmin(SelectQuery $query, array $options =[]): SelectQuery
+    {
+        return $query->where(['Users.role' => 'admin']);
     }
 }

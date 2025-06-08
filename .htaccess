@@ -6,7 +6,16 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteRule    ^(\.well-known/.*)$ $1 [L]
-    RewriteRule    ^$    webroot/    [L]
-    RewriteRule    (.*) webroot/$1    [L]
+
+    # Skip rewrite for well-known paths
+    RewriteRule ^(\.well-known/.*)$ $1 [L]
+
+    # Don't rewrite static assets
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule \.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$ - [L]
+
+    # Rewrite root and all else to webroot/
+    RewriteRule ^$ webroot/ [L]
+    RewriteRule (.*) webroot/$1 [L]
 </IfModule>
+

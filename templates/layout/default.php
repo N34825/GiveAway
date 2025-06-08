@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake', 'style']) ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
@@ -68,7 +68,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    <footer class="footer text-center p-4 bg-light footer-section">
+    <footer class="footer-main">
         <div class="main-section-footer">
             <?= $this->Html->link('Terms & Conditions', ['controller' => 'Pages', 'action' => 'terms']) ?> |
             <?= $this->Html->link('Privacy Policy', ['controller' => 'Pages', 'action' => 'privacy']) ?> |
