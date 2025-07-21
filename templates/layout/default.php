@@ -44,7 +44,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             ]) ?>
             
         </div>
-        <div class="top-nav-links">
+        <!-- <div class="top-nav-links">
             <?= $this->Html->link('LOGIN', [
                 'controller' => 'Users',
                 'action' => 'login'
@@ -60,7 +60,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 'escape' => false
             ]) ?>
 
-        </div>
+        </div> -->
     </nav>
     <main class="main">
         <div class="container">
@@ -90,7 +90,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <i class="fab fa-whatsapp fa-2x"></i>
             </a>
             <a href="https://line.me/R/ti/p/~YourID" target="_blank" rel="noopener">
-                <img src="/img/line-icon.png" alt="LINE" style="height:32px;">
+                <img src="/img/line.png" alt="LINE" style="height:32px;">
             </a>
         </div>
         <span>&copy; <?= date('Y') ?> K&K GIVEAWAY. All rights reserved.</p></span>

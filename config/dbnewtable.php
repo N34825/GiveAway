@@ -1,19 +1,78 @@
 <!-- users Table -->
 CREATE TABLE `users` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `username` varchar(255) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `modified` datetime NOT NULL,
-  `created` datetime NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
+  `gender` ENUM('male', 'female', 'other') NOT NULL,
+  `birthday` DATE NOT NULL,
+  `email_address` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `verification_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `regions` VARCHAR(255) NOT NULL,
+  `townships` VARCHAR(255) NOT NULL,
+  `address_1` VARCHAR(255) NOT NULL,
+  `address_2` VARCHAR(255),
+  `zip` VARCHAR(20) NOT NULL,
+  `phone_number` VARCHAR(20) NOT NULL,
+  `user_image` VARCHAR(255),
+  `del_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `user_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_user_id` INT NOT NULL,
+  `updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_user_id` INT NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 <!-- Products Table -->
 CREATE TABLE `products` (
-  `id` int(30) NOT NULL AUTO_INCREMENT,
-  `product_id` int(30) NOT NULL,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `category_id` INT UNSIGNED NOT NULL,
+  `sub_category_id` INT UNSIGNED NOT NULL,
+  `post_id` INT UNSIGNED NOT NULL,
+  `region_id` INT UNSIGNED NOT NULL,
+  `target_type` TINYINT UNSIGNED NOT NULL,
+  `product_name` VARCHAR(255) NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
+  `product_qty` INT UNSIGNED NOT NULL DEFAULT 0,
+  `locations` VARCHAR(255) DEFAULT NULL,
+  `main_img` VARCHAR(255) DEFAULT NULL,
+  `sub_img_1` VARCHAR(255) DEFAULT NULL,
+  `sub_img_2` VARCHAR(255) DEFAULT NULL,
+  `sub_img_3` VARCHAR(255) DEFAULT NULL,
+  `sub_img_4` VARCHAR(255) DEFAULT NULL,
+  `product_description` TEXT DEFAULT NULL,
+  `click_per_count` INT UNSIGNED NOT NULL DEFAULT 0,
+  `click_per_view` INT UNSIGNED NOT NULL DEFAULT 0,
+  `pick_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `used_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `del_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_user_id` INT UNSIGNED DEFAULT NULL,
+  `updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_user_id` INT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_category_id` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+<!-- Admin Table -->
+CREATE TABLE `admin` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `admin_username` VARCHAR(50) NOT NULL,
+  `admin_email_address` VARCHAR(100) NOT NULL,
+  `admin_password` VARCHAR(255) NOT NULL,
+  `admin_address` VARCHAR(255) DEFAULT NULL,
+  `admin_phone_number` VARCHAR(20) DEFAULT NULL,
+  `admin_image` VARCHAR(255) DEFAULT NULL,
+  `del_flg` TINYINT(1) NOT NULL DEFAULT 0,
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_admin_user_id` INT UNSIGNED DEFAULT NULL,
+  `updated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_admin_user_id` INT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_email` (`admin_email_address`),
+  UNIQUE KEY `unique_username` (`admin_username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

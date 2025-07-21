@@ -3,3 +3,8 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+<Directory "/Users/nangkhinohn/Documents/GitHub/GiveAway/webroot/css">
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>

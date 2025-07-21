@@ -5,8 +5,9 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
-// use Cake\Controller\Component\PaginatorComponent;
+use Cake\Controller\Component\PaginatorComponent;
 use Cake\ORM\Locator\LocatorAwareTrait; 
+use Cake\ORM\TableRegistry;
 
 /**
  * Users Controller
@@ -21,6 +22,7 @@ class UsersController extends AppController
     {
         parent::initialize();
         // $this->loadComponent('Paginator'); // load Paginator for easy pagination
+        // $this->loadHelper('Paginator');
     }
     /**
      * Index method
@@ -29,15 +31,19 @@ class UsersController extends AppController
      */
     public function index()
     {
-        // Get the Users table instance
-        $usersTable = $this->fetchTable('Users');
-        debug($usersTable);exit;
+        $locator = new class {
+            use LocatorAwareTrait;
+        };
 
-        // Build a query
-        $users = $usersTable->find()->toArray();
-        debug($users);exit;
-
-        // Pass the data to the view
+        $usersTable = $locator->getTableLocator()->get('Users');
+        // debug($usersTable);exit;
+        $users = $usersTable->find()->all();
+        $users = $this->paginate(
+            $this->Users->find(), [
+                'limit' => 10,
+                'order' => ['Users.id' => 'DESC']
+            ]
+        );
         $this->set(compact('users'));
     }
 

@@ -86,6 +86,7 @@ return function (RouteBuilder $routes): void {
         $routes->fallbacks(DashedRoute::class);
         // You can define specific admin routes here, e.g.:
         $routes->connect('/users', ['controller' => 'Users', 'action' => 'index']);
+        $routes->connect('/users/add', ['controller' => 'Users', 'action' => 'add']);
         $routes->connect('/dashboard', ['controller' => 'Pages', 'action' => 'dashboard']);
     });
 

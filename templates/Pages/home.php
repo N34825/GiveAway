@@ -50,16 +50,7 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav  ">
-					<li class="nav-item active">
-						<?= $this->Html->link('<span class="sr-only">(current)</span> Home', [
-						'controller' => 'Pages',
-						'action' => 'home'
-						], [
-							'class' => 'nav-link',
-							'escape' => false
-						]) ?>
-					</li>
+				<ul class="navbar-nav">
 					<li class="nav-item">
 						<?= $this->Html->link('SHOP', [
 						'controller' => 'Shop',
@@ -96,6 +87,24 @@
 							'escape' => false
 						]) ?>
 					</li>
+					<li class="nav-item">
+						<?= $this->Html->link('Login/User Account Info', [
+							'controller' => 'Users',
+							'action' => 'login'
+						], [
+							'class' => 'nav-link',
+							'escape' => false
+						]) ?>
+					</li>
+					<li class="nav-item">
+						<?= $this->Html->link('New Member Registration', [
+							'controller' => 'Users',
+							'action' => 'signup'
+						], [
+							'class' => 'nav-link',
+							'escape' => false
+						]) ?>
+					</li>
 				</ul>
 				<div class="user_option">
 					<!-- <?= $this->Html->link('<i class="fa fa-user user-margin" aria-hidden="true"></i> LOGIN', [
@@ -120,7 +129,7 @@
 					<li class="nav-item active">
 						<div class="">
 							<?= $this->Form->control('township_id', [
-								'label' => 'Select Township',
+								// 'label' => 'Select Township',
 								// 'options' => 'Sanchang',
 								'empty' => 'Choose one'
 							])?>
@@ -130,7 +139,7 @@
 					<li class="nav-item active">
 						<div class="">
 							<?= $this->Form->control('category_id', [
-								'label' => 'Select Category',
+								// 'label' => 'Select Category',
 								// 'options' => $category,
 								'empty' => 'Choose one'
 							]) ?>
@@ -138,7 +147,7 @@
 						<!-- <?php foreach ($categories as $category): ?>
 						<div class="">
 							<?= $this->Form->control('category_id', [
-								'label' => 'Select Category',
+								// 'label' => 'Select Category',
 								'options' => $category,
 								'empty' => 'Choose one'
 							]) ?>
@@ -148,7 +157,7 @@
 					<li class="nav-item active">
 						<div class="">
 							<?= $this->Form->control('keywords', [
-								'label' => 'Enter Keywords',
+								// 'label' => 'Enter Keywords',
 								'type' => 'text',
 								'placeholder' => 'Search by keywords...'
 							]) ?>
