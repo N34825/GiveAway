@@ -14,7 +14,6 @@
 	<!-- <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon"> -->
 	<?= $this->Html->meta('icon') ?>
 	<?= $this->Html->css([
-		'owl.carousel.min',
 		'bootstrap',
 		'style',
 		'responsive',

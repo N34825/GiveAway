@@ -27,7 +27,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake', 'style']) ?>
+    <?= $this->Html->css([
+        'normalize.min',
+        'milligram.min',
+        'fonts',
+        'cake',
+        'style',
+        'owl.carousel.min',
+		'bootstrap',
+		'style',
+		'responsive',
+		'font-awesome.min']) ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 

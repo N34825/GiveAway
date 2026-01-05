@@ -5,6 +5,6 @@
 </IfModule>
 <Directory "/Users/nangkhinohn/Documents/GitHub/GiveAway/webroot/css">
     Options Indexes FollowSymLinks
-    AllowOverride All
+    AllowOverride All # Crucial for .htaccess to work
     Require all granted
 </Directory>
